@@ -1,11 +1,5 @@
-import StagePage from "@/components/stagePage";
-
 const Stage = () => {
-  return (
-    <div>
-      <StagePage />
-    </div>
-  );
+  return <div>this is stage page</div>;
 };
 
 export default Stage;
