@@ -35,7 +35,7 @@ if (!getApps()?.length) {
 }
 
 // Firebase の認証と Firebase のデータベースを初期化してエクスポート
-const auth = getAuth();
-export default auth;
+// const auth = getAuth();
+// export default auth;
 export const db = getFirestore();
 export const storage = getStorage();
