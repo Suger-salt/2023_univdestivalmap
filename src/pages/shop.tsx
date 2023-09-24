@@ -1,60 +1,55 @@
+import {
+  createContext,
+  useContext,
+  useEffect,
+  useState,
+  ReactNode,
+} from "react";
+import { getDocs, collection } from "firebase/firestore";
 import { db } from "@/firebase";
-import { collection, getDocs } from "firebase/firestore";
-import { useEffect, useState } from "react";
 
-const ShopPage = () => {
-  // 商品データを格納するステート変数
-  const [products, setProducts] = useState<
-    {
-      productName: string;
-      productPrice: number;
-      productImage: string;
-    }[]
-  >([]);
-  //店舗情報データを格納するステート変数
-  // const [shopInfo, setShopInfo] = useState<{
-  //   shopName: string;
-  //   shopImage: string;
-  //   shopDetail: string;
-  // }>({
-  //   shopName: "",
-  //   shopImage: "",
-  //   shopDetail: "",
-  // });
+// データの型を定義
+interface Product {
+  productName: string;
+  productPrice: number;
+}
 
-  // const [userInfo, setUserInfo] = useState<{
-  //   clubName: string;
-  // }>({
-  //   clubName: "",
-  // });
+interface Shop {
+  shopName: string;
+}
 
-  const [shopName, setshopName] = useState("");
-  const [shopImage, setshopImage] = useState("");
-  const [shopDetail, setshopDetail] = useState("");
-  const [clubName, setclubName] = useState("");
-  const [documentIds, setDocumentIds] = useState<string[]>([]);
+interface User {
+  clubName: string;
+}
 
-  // 全てのデータを引っ張ってきたい
+interface DataItem {
+  Products: Product;
+  Shop: Shop;
+  User: User;
+}
+
+const DataFetchingContext = createContext<{
+  data: DataItem[];
+  loading: boolean;
+}>({
+  data: [],
+  loading: true,
+});
+
+export function DataFetchingProvider({ children }: { children: ReactNode }) {
+  const [data, setData] = useState<DataItem[]>([]);
+  const [loading, setLoading] = useState(true);
+
   useEffect(() => {
     const fetchData = async () => {
       try {
         const querySnapshot = await getDocs(collection(db, "data"));
-        const ids: string[] = [];
+        const data: DataItem[] = [];
         querySnapshot.forEach((doc) => {
-          console.log("dataId is " + doc.id);
-
-          ids.push(doc.id);
-          const data = doc.data(); // データを data 変数に代入
-
-          console.log("data is" + data);
-
-          setProducts(data.Products || []);
-          setshopName(data.Shop.shopName || "");
-          setshopImage(data.Shop.shopImage || "");
-          setshopDetail(data.Shop.shopDetail || "");
-          setclubName(data.User.clubName || "");
+          data.push(doc.data() as DataItem);
         });
-        setDocumentIds(ids);
+        setData(data);
+        setLoading(false);
       } catch (error) {
         console.error("Firestoreからデータを取得できませんでした:", error);
       }
@@ -64,36 +59,44 @@ const ShopPage = () => {
   }, []);
 
   return (
+    <DataFetchingContext.Provider value={{ data, loading }}>
+      {children}
+    </DataFetchingContext.Provider>
+  );
+}
+
+export function useDataFetching() {
+  return useContext(DataFetchingContext);
+}
+
+function ShopPage() {
+  const { data, loading } = useDataFetching();
+
+  if (loading) {
+    return <div>Loading...</div>;
+  }
+
+  return (
     <div>
       <h1>商品一覧</h1>
-      <div className="flex  gap-4 bg-[orange]">
-        <div>F棟</div>
-        {documentIds.map((documentId, index) => (
-          <div
-            key={index}
-            className="bg-[red]"
-            onClick={() => {
-              console.log("clicked");
-              console.log("documentId is" + documentId);
-            }}
-          >
-            <div>documentId is {documentId} </div>
-            <div>index is {index} </div>
-          </div>
-        ))}
-
-        <div>N棟</div>
-      </div>
+      {data.map((item, index) => (
+        <div key={index}>
+          <h2>{item.Products.productName}</h2>
+          <p>価格: {item.Products.productPrice}円</p>
+          <div>店舗名: {item.Shop.shopName}</div>
+          <div>クラブ名: {item.User.clubName}</div>
+        </div>
+      ))}
     </div>
   );
-};
+}
 
-export default ShopPage;
+function App() {
+  return (
+    <DataFetchingProvider>
+      <ShopPage />
+    </DataFetchingProvider>
+  );
+}
 
-// こいつ中身出せる
-// {products.map((product, index) => (
-//   <div key={index} className="m-[10px] bg-[red] p-4">
-//     <h2>{product.productName}</h2>
-//     <p>価格: {product.productPrice}円</p>
-//   </div>
-// ))}
+export default App;
