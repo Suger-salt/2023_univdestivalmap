@@ -19,6 +19,7 @@ import { getStorage } from "firebase/storage";
 //   appId: process.env.NEXT_PUBLIC_APPID,
 // };
 
+// こっちはunivfes
 const firebaseConfig = {
   apiKey: "AIzaSyC7Pok-y3G_4C668wHclhbrLbBKDWdNroE",
   authDomain: "univfestival-98bae.firebaseapp.com",
@@ -28,6 +29,17 @@ const firebaseConfig = {
   appId: "1:283242507809:web:561762f8adca4802f43d60",
   measurementId: "G-K00BEV2J62",
 };
+
+// こっちはmap
+// const firebaseConfig = {
+//   apiKey: "AIzaSyAQZFGecRJv3Lv2Cj95jTbaaEs1KvHK45c",
+//   authDomain: "fesmap-1c432.firebaseapp.com",
+//   projectId: "fesmap-1c432",
+//   storageBucket: "fesmap-1c432.appspot.com",
+//   messagingSenderId: "461690037577",
+//   appId: "1:461690037577:web:a0696a0ce29052dc742698",
+//   measurementId: "G-SER5SXQ3MC",
+// };
 
 //  Firebase がすでに初期化されているかチェックして、初期化されていない場合初期化をする関数
 if (!getApps()?.length) {

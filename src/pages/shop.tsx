@@ -7,96 +7,57 @@ import {
 } from "react";
 import { getDocs, collection } from "firebase/firestore";
 import { db } from "@/firebase";
+import { getAllClub } from "./api/db";
+import { dataTypes } from "@/types/types";
 
-// データの型を定義
-interface Product {
-  productName: string;
-  productPrice: number;
-}
-
-interface Shop {
-  shopName: string;
-}
-
-interface User {
-  clubName: string;
-}
-
-interface DataItem {
-  Products: Product;
-  Shop: Shop;
-  User: User;
-}
-
-const DataFetchingContext = createContext<{
-  data: DataItem[];
-  loading: boolean;
-}>({
-  data: [],
-  loading: true,
-});
-
-export function DataFetchingProvider({ children }: { children: ReactNode }) {
-  const [data, setData] = useState<DataItem[]>([]);
-  const [loading, setLoading] = useState(true);
+function ShopPage() {
+  const [data, setData] = useState<dataTypes[]>([]);
 
   useEffect(() => {
     const fetchData = async () => {
       try {
-        const querySnapshot = await getDocs(collection(db, "data"));
-        const data: DataItem[] = [];
-        querySnapshot.forEach((doc) => {
-          data.push(doc.data() as DataItem);
-        });
-        setData(data);
-        setLoading(false);
+        const result = (await getAllClub()) as dataTypes[]; // getAllName 関数を呼び出してデータを取得
+        if (result) {
+          setData(result);
+          // console.log(data.Shop.shopName);
+        } // データをステートにセット
       } catch (error) {
         console.error("Firestoreからデータを取得できませんでした:", error);
       }
     };
 
     fetchData();
+    console.log("data is");
   }, []);
-
-  return (
-    <DataFetchingContext.Provider value={{ data, loading }}>
-      {children}
-    </DataFetchingContext.Provider>
-  );
-}
-
-export function useDataFetching() {
-  return useContext(DataFetchingContext);
-}
-
-function ShopPage() {
-  const { data, loading } = useDataFetching();
-
-  if (loading) {
-    return <div>Loading...</div>;
-  }
 
   return (
     <div>
       <h1>商品一覧</h1>
-      {data.map((item, index) => (
-        <div key={index}>
-          <h2>{item.Products.productName}</h2>
-          <p>価格: {item.Products.productPrice}円</p>
-          <div>店舗名: {item.Shop.shopName}</div>
-          <div>クラブ名: {item.User.clubName}</div>
-        </div>
-      ))}
+      {/* dataが存在するならmapを回せ */}
+      {data ? (
+        data.map((item, index) => (
+          <button
+            key={index}
+            className="bg-[red] m-[1rem]"
+            onClick={() => {
+              console.log("click");
+              console.log(index);
+              console.log(item.Products);
+              console.log("shopName is" + item.Shop.shopName);
+            }}
+          >
+            <div>店舗名: {item.Shop.shopName}</div>
+          </button>
+        ))
+      ) : (
+        <div>Loading...</div>
+      )}
     </div>
   );
 }
 
 function App() {
-  return (
-    <DataFetchingProvider>
-      <ShopPage />
-    </DataFetchingProvider>
-  );
+  return <ShopPage />;
 }
 
 export default App;
