@@ -6,7 +6,8 @@ import {
   collectionGroup,
 } from "firebase/firestore";
 import { db } from "../../firebase";
-import { dataTypes } from "@/types/types";
+// import { dataTypes } from "@/types/types";
+import { Product, ShopData } from "@/types/types";
 
 // クエリ処理の形で持ってきたい
 //名前が必要になる場面でこの関数を使いたい
@@ -44,9 +45,9 @@ export const getAllClub = async () => {
     const shopsQuery = query(shopCollection);
     const shopsSnapshot = await getDocs(shopsQuery);
 
-    const data: dataTypes[] = [];
+    const data: ShopData[] = [];
     shopsSnapshot.forEach((doc) => {
-      const shopData = doc.data() as dataTypes;
+      const shopData = doc.data() as ShopData;
 
       const shopName = shopData.Shop.shopName; // "name" フィールドを取得
       console.log(doc.id, " => name:", shopName);
