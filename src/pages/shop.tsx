@@ -21,6 +21,7 @@ import {
   useDisclosure,
   Button,
 } from "@chakra-ui/react";
+import styles1 from "@/styles/misada.module.css";
 
 function ShopPage() {
   const [data, setData] = useState<ShopData[]>([]);
@@ -75,20 +76,31 @@ function ShopPage() {
         <Modal isOpen={isOpen} onClose={onClose}>
           <ModalOverlay />
           <ModalContent>
-            <ModalHeader>商品詳細画面です</ModalHeader>
+            <ModalHeader>{item.Shop.shopName}</ModalHeader>
             <ModalCloseButton />
+
             <ModalBody>
-              <div>店舗名: {item.Shop.shopName}</div>
+              <div className={styles1.sircle_name}>
+                サークル名: {item.User.clubName}
+              </div>
               <div>店舗説明: {item.Shop.shopDetail}</div>
-              <img src={item.Shop.shopImage} />
-              <div>部活名: {item.User.clubName}</div>
+              <img src={item.Shop.shopImage} className={styles1.place_photo} />
+              <div className={styles1.menu}>メニュー</div>
 
               {item.Products.map((product, productIndex) => (
-                <div key={productIndex}>
-                  <div>商品名: {product.productName}</div>
-
-                  <img src={product.productImage} />
-                  <div>商品価格: {product.productPrice}</div>
+                <div key={productIndex} className={styles1.container}>
+                  <div className={styles1.item}>
+                    <img
+                      className={styles1.menu_photo}
+                      src={product.productImage}
+                    />
+                    <div className={styles1.menu_name}>
+                      商品名: {product.productName}
+                    </div>
+                    <div className={styles1.menu_name}>
+                      商品価格: {product.productPrice}
+                    </div>
+                  </div>
                 </div>
               ))}
             </ModalBody>

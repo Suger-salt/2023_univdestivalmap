@@ -1,0 +1,31 @@
+/* .containerのCSS */
+.container {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-around;
+  gap: 2rem;
+}
+
+/* .itemのCSS */
+.item {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+  width: 25rem;
+}
+
+/* .menu-photoのCSS */
+.menu_photo {
+  border-radius: 50%; /* 画像を円形にする */
+  width: 20rem;
+  height: 20rem;
+  object-fit: cover;
+  margin-bottom: 1rem; /* 画像の下に余白を追加 */
+}
+
+/* .menu-nameのCSS */
+.menu_name {
+  font-size: 2.5rem;
+  font-weight: bold;
+}
