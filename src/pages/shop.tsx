@@ -20,6 +20,7 @@ import {
   ModalCloseButton,
   useDisclosure,
   Button,
+  Box,
 } from "@chakra-ui/react";
 import styles1 from "@/styles/misada.module.css";
 
@@ -27,6 +28,7 @@ function ShopPage() {
   const [data, setData] = useState<ShopData[]>([]);
   const { isOpen, onOpen, onClose } = useDisclosure();
   const [item, setItem] = useState<ShopData | undefined>(undefined);
+  const modalProducts = item ? item.Products : [];
   useEffect(() => {
     const fetchData = async () => {
       try {
@@ -73,44 +75,53 @@ function ShopPage() {
       )}
 
       {item && (
-        <Modal isOpen={isOpen} onClose={onClose}>
-          <ModalOverlay />
-          <ModalContent>
-            <ModalHeader>{item.Shop.shopName}</ModalHeader>
-            <ModalCloseButton />
+        <Box>
+          <Modal isOpen={isOpen} onClose={onClose}>
+            <ModalOverlay />
+            <ModalContent className="m-[5vw]">
+              {/* <ModalHeader>{item.Shop.shopName}</ModalHeader> */}
+              <ModalCloseButton />
 
-            <ModalBody>
-              <div className={styles1.sircle_name}>
-                サークル名: {item.User.clubName}
-              </div>
-              <div>店舗説明: {item.Shop.shopDetail}</div>
-              <img src={item.Shop.shopImage} className={styles1.place_photo} />
-              <div className={styles1.menu}>メニュー</div>
+              <ModalBody>
+                {item.Shop.shopName}
 
-              {item.Products.map((product, productIndex) => (
-                <div key={productIndex} className={styles1.container}>
-                  <div className={styles1.item}>
-                    <img
-                      className={styles1.menu_photo}
-                      src={product.productImage}
-                    />
-                    <div className={styles1.menu_name}>
-                      商品名: {product.productName}
-                    </div>
-                    <div className={styles1.menu_name}>
-                      商品価格: {product.productPrice}
-                    </div>
-                  </div>
+                <div className={styles1.sircle_name}>
+                  サークル名: {item.User.clubName}
                 </div>
-              ))}
-            </ModalBody>
-            <ModalFooter>
-              <Button colorScheme="blue" mr={3} onClick={onClose}>
-                Close
-              </Button>
-            </ModalFooter>
-          </ModalContent>
-        </Modal>
+                <div>店舗説明: {item.Shop.shopDetail}</div>
+                <img
+                  src={item.Shop.shopImage}
+                  className={styles1.place_photo}
+                />
+                <div className={styles1.menu}>メニュー</div>
+                <Box className="bg-[red] ">
+                  <Box className={styles1.container}>
+                    {modalProducts.map((product, productIndex) => (
+                      <Box key={productIndex} className="bg-[blue]">
+                        <img
+                          className={styles1.menu_photo}
+                          src={product.productImage}
+                        />
+                        <div className={styles1.menu_name}>
+                          商品名: {product.productName}
+                        </div>
+                        <div className={styles1.menu_name}>
+                          商品価格: {product.productPrice}
+                        </div>
+                      </Box>
+                    ))}
+                  </Box>
+                </Box>
+              </ModalBody>
+
+              <ModalFooter>
+                <Button colorScheme="blue" mr={3} onClick={onClose}>
+                  Close
+                </Button>
+              </ModalFooter>
+            </ModalContent>
+          </Modal>
+        </Box>
       )}
 
       {/* ここまで */}
@@ -123,5 +134,3 @@ function App() {
 }
 
 export default App;
-
-//

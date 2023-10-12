@@ -1,31 +1,47 @@
 /* .containerのCSS */
-.container {
+/* 下田君のcss */
+/* .container {
   display: flex;
   flex-wrap: wrap;
   justify-content: space-around;
   gap: 2rem;
+} */
+
+.container {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr); /* 2列のグリッド */
+  gap: 1rem;
 }
 
 /* .itemのCSS */
-.item {
+/* 下田君のｃｓｓ */
+/* .item {
   display: flex;
   flex-direction: column;
   align-items: center;
   text-align: center;
   width: 25rem;
+} */
+
+.item {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+  width: 100%;
 }
 
 /* .menu-photoのCSS */
-.menu_photo {
-  border-radius: 50%; /* 画像を円形にする */
+/* .menu_photo {
+  border-radius: 50%;
   width: 20rem;
   height: 20rem;
   object-fit: cover;
-  margin-bottom: 1rem; /* 画像の下に余白を追加 */
-}
+  margin-bottom: 1rem;
+} */
 
 /* .menu-nameのCSS */
-.menu_name {
+/* .menu_name {
   font-size: 2.5rem;
   font-weight: bold;
-}
+} */
