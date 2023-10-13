@@ -23,6 +23,7 @@ import {
   Box,
 } from "@chakra-ui/react";
 import styles1 from "@/styles/misada.module.css";
+import styles2 from "@/styles/shop.module.css";
 
 function ShopPage() {
   const [data, setData] = useState<ShopData[]>([]);
@@ -50,29 +51,48 @@ function ShopPage() {
     <div>
       <h1>商品一覧</h1>
       {/* dataが存在するならmapを回せ */}
-      {data ? (
-        data.map((item, index) => (
-          <div key={index}>
-            <button
-              className="bg-[red] m-[1rem]"
-              onClick={() => {
-                console.log("click");
-                console.log(index);
-                console.log(item.Products);
-                console.log("shopName is" + item.Shop.shopName);
-                setItem(item);
-                onOpen();
-              }}
-            >
-              <div>店舗名: {item.Shop.shopName}</div>
-            </button>
-            {/* ここからモーダルの内容を記述 */}
-          </div>
-          //モーダルここまで
-        ))
-      ) : (
-        <div>Loading...</div>
-      )}
+
+      <div>
+        <div className={styles2.sideFont1}>N棟側</div>
+        <div className={styles2.sideFont2}>F棟側</div>
+        <div
+          style={{
+            display: "grid",
+            gridTemplateColumns: "repeat(2, 1fr)",
+            overflow: "scroll",
+            height: "85vh",
+            padding: "30px",
+          }}
+        >
+          {data ? (
+            data.map((item, index) => (
+              <div key={index}>
+                <button
+                  className="bg-[red] m-[1rem]"
+                  onClick={() => {
+                    console.log("click");
+                    console.log(index);
+                    console.log(item.Products);
+                    console.log("shopName is" + item.Shop.shopName);
+                    setItem(item);
+                    onOpen();
+                  }}
+                >
+                  <div> {item.Shop.shopName}</div>
+                  <img
+                    src={item.Shop.shopImage}
+                    style={{ borderRadius: "30px" }}
+                  />
+                </button>
+                {/* ここからモーダルの内容を記述 */}
+              </div>
+              //モーダルここまで
+            ))
+          ) : (
+            <div>Loading...</div>
+          )}
+        </div>
+      </div>
 
       {item && (
         <Box>

@@ -1,5 +1,6 @@
 import {
   collection,
+  orderBy,
   query,
   where,
   getDocs,
@@ -44,7 +45,7 @@ export const getAllName = async () => {
 export const getAllClub = async () => {
   try {
     const shopCollection = collection(db, "data");
-    const shopsQuery = query(shopCollection);
+    const shopsQuery = query(shopCollection, orderBy("ID", "asc"));
     const shopsSnapshot = await getDocs(shopsQuery);
 
     const data: ShopData[] = [];

@@ -1,0 +1,23 @@
+.sideFont1 {
+  font-size: 2rem;
+  width: 2rem;
+  text-align: center;
+  margin: 6px;
+  line-height: 2.5rem;
+  position: absolute;
+  transform: translateY(-50%);
+  top: 50%;
+  left: 0;
+}
+
+.sideFont2 {
+  font-size: 2rem;
+  width: 2rem;
+  text-align: center;
+  margin: 6px;
+  line-height: 2.5rem;
+  position: absolute;
+  transform: translateY(-50%);
+  top: 50%;
+  right: 0;
+}
