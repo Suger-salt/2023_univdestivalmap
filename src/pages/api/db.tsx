@@ -3,11 +3,13 @@ import {
   query,
   where,
   getDocs,
-  collectionGroup,
+  onSnapshot,
 } from "firebase/firestore";
 import { db } from "../../firebase";
 // import { dataTypes } from "@/types/types";
 import { Product, ShopData } from "@/types/types";
+import { useState, useEffect } from "react";
+import { useRouter } from "next/router";
 
 // クエリ処理の形で持ってきたい
 //名前が必要になる場面でこの関数を使いたい
@@ -58,4 +60,56 @@ export const getAllClub = async () => {
   } catch (error) {
     console.error("Firestoreからデータを取得できませんでした:", error);
   }
+};
+
+// export const getBuild = (): Build[] => {
+//   const [builds, setBuilds] = useState<Build[]>([]);
+//   useEffect(() => {
+//     const unsubscribe = onSnapshot(collection(db, "builds"), (snapshot) => {
+//       const buildData: Build[] = snapshot.docs.map((doc) => ({
+//         name: doc.id,
+//         clickableArea: doc.data().clickableArea as string,
+//       }));
+//       setBuilds(buildData);
+//     });
+
+//     return unsubscribe;
+//   }, []);
+
+//   return builds;
+// };
+
+type Build = {
+  clickableArea: string;
+  name: string;
+};
+
+type BuildsHook = {
+  builds: Build[];
+  moveToFloor: (name: string) => void;
+};
+
+export const useBuilds = (): BuildsHook => {
+  const [builds, setBuilds] = useState<Build[]>([]);
+  const router = useRouter();
+
+  useEffect(() => {
+    const unsubscribe = onSnapshot(collection(db, "builds"), (snapshot) => {
+      const buildData: Build[] = snapshot.docs.map((doc) => ({
+        name: doc.id,
+        clickableArea: doc.data().clickableArea as string,
+      }));
+      setBuilds(buildData);
+    });
+
+    return () => {
+      unsubscribe();
+    };
+  }, []);
+
+  const moveToFloor = (name: string) => {
+    router.push(`/${name}`);
+  };
+
+  return { builds, moveToFloor };
 };
