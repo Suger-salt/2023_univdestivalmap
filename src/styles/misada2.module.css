@@ -1,0 +1,103 @@
+@charset "UTF-8";
+/* header {
+  font-size: 5rem;
+  line-height: 1rem;
+  padding-top: 1.7rem;
+  font-weight: bold;
+}  */
+.title {
+  margin-top: 7rem;
+  font-size: 5.8rem;
+  text-align: center;
+}
+.subtitle {
+  text-align: center;
+  font-size: 3rem;
+  font-weight: bold;
+} /*title,subtitleは「ステージ」「スケジュール」の文字の大きさを調整するCSSです*/
+.container {
+  display: grid;
+  grid-template-columns: 20rem 20rem;
+  justify-content: center;
+  font-size: 2.6rem;
+  margin-top: 6rem;
+  gap: 1.2rem;
+  font-weight: bolder;
+} /*このcontainerはgridを用いて「21日」「22日」を横ならびにするためのCSSです*/
+.item {
+  background-color: lightsalmon;
+  text-align: center;
+  padding: 1rem;
+  font-size: 2.9rem;
+  font-weight: bolder;
+  border-radius: 43px 0px 0px 43px;
+  border-style: solid;
+  border-width: 0.2rem;
+} /*これは「21日」の文字に関するCSSです*/
+.item2 {
+  background-color: white;
+  text-align: center;
+  padding: 1rem;
+  font-size: 2.9rem;
+  font-weight: bold;
+  border-style: solid;
+  border-width: 0.2rem;
+  border-radius: 0px 43px 43px 0px;
+} /*これは「22日」の文字に関するCSSです*/
+.daiya {
+  display: flex;
+  flex-direction: column;
+  text-align: center;
+} /*このcssは左側の円と線を縦並びに並ばせるためのcssです。*/
+.circle {
+  border-style: solid;
+  border-width: 0.49rem;
+  width: 2rem;
+  height: 2rem;
+  border-radius: 100%;
+} /*このcssは左側の円を調整するためのcssです*/
+.border {
+  background-color: gray;
+  width: 0.3rem;
+  height: 11.8rem;
+  margin-left: 1.28rem;
+} /*このcssは円をつなぐ線の太さや長さを調整するCSSです*/
+.border2 {
+  background-color: gray;
+  width: 0.3rem;
+  height: 14rem;
+  margin-left: 1.28rem;
+} /* このborder2は演目名が二行以上の文字数の名前がある場合の左側の線の長さを調整するcssです。*/
+.summary {
+  display: flex;
+  margin-top: 8rem;
+  gap: 0rem;
+  margin-left: 3rem;
+} /*このsummaryは左側に円と線をつないだダイヤ線を、右側に演目名を、flexboxで配置するためのものです。*/
+.ivent {
+  display: flex;
+  flex-direction: column;
+  gap: 5rem;
+} /*このiventのcssは、時刻と演目名を一つの要素として縦向きに並べるためのcssです*/
+.ivent2 {
+  display: flex;
+  gap: 6rem;
+  border-bottom: 0.3rem dotted gray;
+  width: 45rem;
+  margin-left: 3rem;
+} /*このivent２は時刻と演目名の文字を横並びに配置するためのcssです*/
+.ivent_time {
+  font-size: 3rem;
+  font-weight: bold;
+} /*このivent-timeは名前の通り、時刻を表記する文字にかんするcssです*/
+.ivent_name {
+  font-size: 3rem;
+  line-height: 2.9rem;
+  padding-top: 1rem;
+  font-weight: bold;
+} /*このivent-nameは名前の通り、演目名を表記する文字にかんするcssです*/
+.club_name {
+  margin-top: 0.5rem;
+  font-size: 2rem;
+  color: gray;
+} /*このclub-nameは、演目名の下にある灰色の小さな文字に関するcssです*/
