@@ -1,11 +1,5 @@
-import LivePage from "@/components/livePage";
-
 const Live = () => {
-  return (
-    <div>
-      <LivePage />
-    </div>
-  );
+  return <div>ここはライブページです</div>;
 };
 
 export default Live;
