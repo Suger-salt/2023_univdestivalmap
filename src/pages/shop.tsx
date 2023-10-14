@@ -24,6 +24,7 @@ import {
 } from "@chakra-ui/react";
 import styles1 from "@/styles/misada.module.css";
 import styles2 from "@/styles/shop.module.css";
+import styles3 from "@/styles/modal.module.css";
 
 function ShopPage() {
   const [data, setData] = useState<ShopData[]>([]);
@@ -61,14 +62,14 @@ function ShopPage() {
             gridTemplateColumns: "repeat(2, 1fr)",
             overflow: "scroll",
             height: "85vh",
-            padding: "30px",
+            padding: "40px",
           }}
         >
           {data ? (
             data.map((item, index) => (
-              <div key={index}>
+              <div key={index} className="p-[4px] m-[4px]">
                 <button
-                  className="bg-[red] m-[1rem]"
+                  className=" "
                   onClick={() => {
                     console.log("click");
                     console.log(index);
@@ -78,10 +79,28 @@ function ShopPage() {
                     onOpen();
                   }}
                 >
-                  <div> {item.Shop.shopName}</div>
+                  <div
+                    style={{
+                      backgroundImage: `url('/images/pop2.svg')`,
+                      backgroundRepeat: "no-repeat",
+                      backgroundPosition: "center",
+                      backgroundSize: "contain",
+                      color: "white",
+                      padding: "18px",
+                      fontSize: "14px",
+                      height: "20px",
+                      display: "flex",
+                      alignItems: "center",
+                      justifyContent: "center",
+                    }}
+                  >
+                    {item.Shop.shopName.length > 6
+                      ? item.Shop.shopName.slice(0, 6) + "..."
+                      : item.Shop.shopName}
+                  </div>
                   <img
                     src={item.Shop.shopImage}
-                    style={{ borderRadius: "30px" }}
+                    style={{ borderRadius: "30px", marginTop: "6px" }}
                   />
                 </button>
                 {/* ここからモーダルの内容を記述 */}
@@ -95,25 +114,33 @@ function ShopPage() {
       </div>
 
       {item && (
-        <Box>
-          <Modal isOpen={isOpen} onClose={onClose}>
-            <ModalOverlay />
-            <ModalContent className="m-[5vw]">
-              {/* <ModalHeader>{item.Shop.shopName}</ModalHeader> */}
-              <ModalCloseButton />
+        <Modal isOpen={isOpen} onClose={onClose}>
+          <ModalOverlay />
+          <ModalContent className="m-[5vw]">
+            {/* <ModalHeader>{item.Shop.shopName}</ModalHeader> */}
+            <ModalCloseButton />
 
+            <Box className={styles3.container1}>
               <ModalBody>
-                {item.Shop.shopName}
+                <div className={styles3.topcontents}>
+                  <div className={styles3.ShopTitle}>
+                    店舗名： {item.Shop.shopName}
+                  </div>
 
-                <div className={styles1.sircle_name}>
-                  サークル名: {item.User.clubName}
+                  <div className={styles3.ClubTitle}>
+                    サークル名: {item.User.clubName}
+                  </div>
+                  {/* <div>店舗説明: {item.Shop.shopDetail}</div> */}
+                  <img
+                    src={item.Shop.shopImage}
+                    className={styles1.place_photo}
+                  />
                 </div>
-                <div>店舗説明: {item.Shop.shopDetail}</div>
-                <img
-                  src={item.Shop.shopImage}
-                  className={styles1.place_photo}
-                />
-                <div className={styles1.menu}>メニュー</div>
+
+                <div className={styles3.Menu}>
+                  <p className={styles3.MenuText}>メニュー</p>
+                </div>
+
                 <Box className="bg-[red] ">
                   <Box className={styles1.container}>
                     {modalProducts.map((product, productIndex) => (
@@ -136,12 +163,12 @@ function ShopPage() {
 
               <ModalFooter>
                 <Button colorScheme="blue" mr={3} onClick={onClose}>
-                  Close
+                  閉じる
                 </Button>
               </ModalFooter>
-            </ModalContent>
-          </Modal>
-        </Box>
+            </Box>
+          </ModalContent>
+        </Modal>
       )}
 
       {/* ここまで */}

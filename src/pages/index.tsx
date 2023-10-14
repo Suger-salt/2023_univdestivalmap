@@ -25,13 +25,13 @@ export default function Home() {
       <div>-----------------</div>
       <div style={{ overflow: "scroll", position: "relative" }}>
         <img
-          src="/images/map.svg"
+          src="/images/map_new.svg"
           alt="map"
           useMap="#buildMap"
           style={{
-            width: 800,
-            maxHeight: 800,
-            maxWidth: 800,
+            width: 953,
+            maxHeight: 1000,
+            maxWidth: 1000,
             objectFit: "cover",
           }}
         />
