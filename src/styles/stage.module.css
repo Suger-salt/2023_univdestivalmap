@@ -1,0 +1,50 @@
+.container {
+  text-align: center;
+  margin-top: 20px;
+  position: relative;
+}
+
+.imageContainer {
+  margin-top: 20px;
+  justify-content: center;
+  position: relative;
+  overflow: hidden;
+  transition: opacity 0s ease; /* 画像の切り替えに1秒かけてフェードアウトとフェードインのアニメーションを追加 */
+}
+
+.text {
+  font-size: 24px;
+  font-weight: bold;
+  margin-bottom: 10px;
+}
+
+.leftImage {
+  position: absolute;
+  left: 0;
+  top: 0;
+}
+
+.selectedImage {
+  margin-top: 20px;
+  /* display: block; */
+  margin-left: auto;
+  margin-right: auto;
+}
+
+@keyframes fadeIn {
+  0% {
+    opacity: 0;
+  }
+  100% {
+    opacity: 1;
+  }
+}
+
+@keyframes fadeOut {
+  0% {
+    opacity: 1;
+  }
+  100% {
+    opacity: 0;
+  }
+}
