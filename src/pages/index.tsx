@@ -2,6 +2,7 @@ import Link from "next/link";
 import Image from "next/image";
 import { useBuilds } from "./api/db";
 import { useRouter } from "next/router";
+import Header from "@/pages/header";
 
 export default function Home() {
   const { builds, moveToFloor } = useBuilds();
@@ -13,16 +14,7 @@ export default function Home() {
   // }
   return (
     <>
-      <div>this is top page</div>
-      {/* <div>-----------------</div>
-      <Link href="/shop"> link to shopPage</Link>
-      <div>-----------------</div>
-      <Link href="/stage"> link to stagePage</Link>
-      <div>-----------------</div>
-      <Link href="/live"> link to livePage</Link> */}
-
-      {/* 画像を表示 */}
-      <div>-----------------</div>
+      <Header />
       <div style={{ overflow: "scroll", position: "relative" }}>
         <img
           src="/images/map_new.svg"
