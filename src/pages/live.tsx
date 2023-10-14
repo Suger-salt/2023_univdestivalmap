@@ -1,5 +1,12 @@
+import Header from "./header";
+
 const Live = () => {
-  return <div>ここはライブページです</div>;
+  return (
+    <>
+      <Header />
+      <div>ここはライブページです</div>
+    </>
+  );
 };
 
 export default Live;

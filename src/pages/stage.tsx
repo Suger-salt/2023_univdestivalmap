@@ -1,5 +1,11 @@
+import Header from "./header";
 const Stage = () => {
-  return <div>this is stage page</div>;
+  return (
+    <>
+      <Header />
+      <div>this is stage page</div>
+    </>
+  );
 };
 
 export default Stage;

@@ -26,6 +26,7 @@ import styles1 from "@/styles/misada.module.css";
 import styles2 from "@/styles/shop.module.css";
 import styles3 from "@/styles/modal.module.css";
 import styles4 from "@/styles/menu.module.css";
+import Header from "@/pages/header";
 
 function ShopPage() {
   const [data, setData] = useState<ShopData[]>([]);
@@ -44,20 +45,14 @@ function ShopPage() {
         console.error("Firestoreからデータを取得できませんでした:", error);
       }
     };
-
     fetchData();
     console.log("data is");
   }, []);
-
   return (
     <div>
       {/* <h1>商品一覧</h1> */}
       {/* dataが存在するならmapを回せ */}
-
-      <div className="w-full flex justify-center items-center bg-[#3598DB] h-[8vh] pb-[6px]">
-        <img src="/images/icon_POLYGON.svg" alt="Icon" />
-      </div>
-
+      <Header />
       <div>
         <div className={styles2.sideFont1}>N棟側</div>
         <div className={styles2.sideFont2}>F棟側</div>
