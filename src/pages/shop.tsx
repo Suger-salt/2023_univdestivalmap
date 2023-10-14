@@ -25,6 +25,7 @@ import {
 import styles1 from "@/styles/misada.module.css";
 import styles2 from "@/styles/shop.module.css";
 import styles3 from "@/styles/modal.module.css";
+import styles4 from "@/styles/menu.module.css";
 
 function ShopPage() {
   const [data, setData] = useState<ShopData[]>([]);
@@ -50,8 +51,12 @@ function ShopPage() {
 
   return (
     <div>
-      <h1>商品一覧</h1>
+      {/* <h1>商品一覧</h1> */}
       {/* dataが存在するならmapを回せ */}
+
+      <div className="w-full flex justify-center items-center bg-[#3598DB] h-[8vh] pb-[6px]">
+        <img src="/images/icon_POLYGON.svg" alt="Icon" />
+      </div>
 
       <div>
         <div className={styles2.sideFont1}>N棟側</div>
@@ -81,12 +86,13 @@ function ShopPage() {
                 >
                   <div
                     style={{
-                      backgroundImage: `url('/images/pop2.svg')`,
+                      backgroundImage: `url('/images/pop3.svg')`,
                       backgroundRepeat: "no-repeat",
                       backgroundPosition: "center",
                       backgroundSize: "contain",
                       color: "white",
                       padding: "18px",
+
                       fontSize: "14px",
                       height: "20px",
                       display: "flex",
@@ -116,24 +122,22 @@ function ShopPage() {
       {item && (
         <Modal isOpen={isOpen} onClose={onClose}>
           <ModalOverlay />
-          <ModalContent className="m-[5vw]">
+          <ModalContent className="m-[14px] ">
             {/* <ModalHeader>{item.Shop.shopName}</ModalHeader> */}
-            <ModalCloseButton />
+            {/* <ModalCloseButton /> */}
 
             <Box className={styles3.container1}>
               <ModalBody>
                 <div className={styles3.topcontents}>
-                  <div className={styles3.ShopTitle}>
-                    店舗名： {item.Shop.shopName}
-                  </div>
+                  <div className={styles3.ShopTitle}>{item.Shop.shopName}</div>
 
-                  <div className={styles3.ClubTitle}>
-                    サークル名: {item.User.clubName}
-                  </div>
+                  <div className={styles3.ClubTitle}>{item.User.clubName}</div>
                   {/* <div>店舗説明: {item.Shop.shopDetail}</div> */}
                   <img
                     src={item.Shop.shopImage}
-                    className={styles1.place_photo}
+                    style={{
+                      boxShadow: "0 8px 16px rgba(0, 0, 0, 0.2)",
+                    }}
                   />
                 </div>
 
@@ -141,24 +145,30 @@ function ShopPage() {
                   <p className={styles3.MenuText}>メニュー</p>
                 </div>
 
-                <Box className="bg-[red] ">
-                  <Box className={styles1.container}>
+                {/* 商品の表示 */}
+
+                {item.Products.length > 0 ? (
+                  <Box className={styles4.menu_contents}>
                     {modalProducts.map((product, productIndex) => (
-                      <Box key={productIndex} className="bg-[blue]">
+                      <Box key={productIndex}>
                         <img
-                          className={styles1.menu_photo}
+                          className={styles4.menu_image}
                           src={product.productImage}
                         />
-                        <div className={styles1.menu_name}>
-                          商品名: {product.productName}
+                        <div className={styles4.menu_title}>
+                          {product.productName}
                         </div>
-                        <div className={styles1.menu_name}>
-                          商品価格: {product.productPrice}
+                        <div className={styles4.menu_price}>
+                          ￥{product.productPrice}
                         </div>
                       </Box>
                     ))}
                   </Box>
-                </Box>
+                ) : (
+                  <div style={{ textAlign: "center" }}>
+                    メニューが登録されていません
+                  </div>
+                )}
               </ModalBody>
 
               <ModalFooter>
