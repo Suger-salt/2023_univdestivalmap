@@ -1,0 +1,149 @@
+.container1 {
+  max-width: 800px;
+
+  /* border: 1px solid #000; */
+  overflow: hidden;
+}
+
+.topcontents {
+  display: flex;
+  flex-direction: column;
+  max-width: 100%; /* 最大幅を親要素に合わせる */
+}
+
+.ShopTitle {
+  font-weight: 800;
+  font-family: Noto Sans, sans-serif;
+  border: none;
+  text-align: center;
+  padding: 0;
+  margin: 0;
+  font-size: 18px; /* デフォルトのフォントサイズ */
+  /* border: 1px solid #ddd; */
+  margin-bottom: 5px;
+}
+
+.ClubTitle {
+  color: rgb(91, 85, 85);
+  font-weight: 800;
+  font-family: Noto Sans, sans-serif;
+  border: none;
+  text-align: center;
+  padding: 0;
+  margin: 0 0 10px 0;
+  font-size: 18px; /* デフォルトのフォントサイズ */
+  /* border: 1px solid #ddd; */
+}
+
+/* スマートフォンサイズのフォントサイズ設定 */
+@media (max-width: 767px) {
+  .ShopTitle {
+    font-size: 6vw;
+  }
+  .ClubTitle {
+    font-size: 4vw;
+  }
+}
+
+/* タブレットサイズ・デスクトップサイズのフォントサイズ設定 */
+@media (min-width: 768px) {
+  .ShopTitle {
+    font-size: 50px;
+  }
+  .ClubTitle {
+    font-size: 35px;
+  }
+}
+
+.ShopImageEditButton {
+  display: block;
+  padding: 5px;
+  background-color: #3598db;
+  color: #fff;
+  font-family: Noto Sans, sans-serif;
+  font-weight: 700;
+  text-align: center;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  transition: background-color 0.3s;
+}
+
+.ImagePreviewImg {
+  width: 100%;
+  aspect-ratio: 16 / 9;
+  object-fit: cover;
+}
+
+.Menu {
+  margin: 2vh 0;
+  display: flex;
+  align-items: center;
+}
+
+.Menu:before,
+.Menu:after {
+  content: "";
+  flex-grow: 1;
+  border-top: 2px dotted #444;
+  display: block;
+}
+
+.MenuText {
+  padding: 0 5vw;
+}
+.MenuContentsDetail {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+}
+
+.SaveButton {
+  margin-top: 4vh;
+  display: block;
+  width: 100%;
+  padding: 12px;
+  background-color: #3598db;
+  color: #fff;
+  font-family: Noto Sans, sans-serif;
+  font-size: 18px;
+  font-weight: 700;
+  text-align: center;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  transition: background-color 0.3s;
+}
+
+.SaveButton:hover {
+  background-color: #0056b3;
+  transition: background-color 0.3s;
+}
+
+.customButton {
+  display: inline-block;
+  padding: 10px 20px;
+  background-color: #3598db;
+  color: #fff;
+  cursor: pointer;
+  border: none;
+  border-radius: 5px;
+  margin: 10px 0px 20px 0px;
+  text-align: center;
+}
+
+.customButton:hover {
+  background-color: #0056b3;
+  transition: background-color 0.3s;
+}
+
+/* 追加ボタンのスタイル */
+.add_button {
+  position: absolute;
+  bottom: 10px;
+  right: 10px;
+  background-color: #007bff;
+  color: #fff;
+  padding: 5px 10px;
+  border-radius: 5px;
+  cursor: pointer;
+}

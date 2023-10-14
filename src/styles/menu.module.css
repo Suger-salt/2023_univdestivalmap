@@ -1,0 +1,113 @@
+.menu_contents {
+  margin: 2px auto;
+  width: 100%;
+  /* border: 1px solid #ddd; */
+  border-radius: 5px;
+  display: grid;
+  grid-template-columns: repeat(2, 1fr); /* 2列のグリッドを作成 */
+  gap: 20px; /* グリッド間の間隔 */
+}
+
+.overlay {
+  position: fixed;
+  top: 8vh;
+  left: 0;
+  width: 100vw;
+  height: 100vh;
+  background: rgba(0, 0, 0, 0.5); /* 黒色の背景に透明度を指定 (ここでは0.5) */
+  z-index: 9; /* メニューよりも背後に表示させるために必要なZインデックス */
+}
+
+.menu {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 40vw;
+  height: 100vh;
+  background: white;
+  box-shadow: 0px 0px 10px 0px rgba(0, 0, 0, 0.5); /* メニューに影をつける */
+  z-index: 10; /* メニューのZインデックス (必要に応じて調整) */
+}
+
+.menu_contents > div {
+  position: relative;
+  /* border: 1px solid #ddd; */
+  box-shadow: 0 5px 10px rgba(0, 0, 0, 0.1);
+}
+
+.menu_image {
+  width: 100%;
+  aspect-ratio: 1 / 1;
+  object-fit: cover;
+  padding: 10px;
+}
+
+.menu_title {
+  font-size: 18px; /* フォントサイズの調整 */
+  font-weight: bold;
+  margin-top: 10px;
+  text-align: center;
+}
+
+.menu_price {
+  font-size: 16px; /* フォントサイズの調整 */
+  color: #ff6600;
+  margin-top: 5px;
+  text-align: center;
+}
+
+/* ✖アイコンのスタイル */
+.close_icon {
+  position: absolute;
+  top: -14px;
+  right: -14px;
+  width: 30px;
+  height: 30px;
+  background-color: #3598db;
+  color: #fff;
+  text-align: center;
+  font-size: 20px;
+  line-height: 30px;
+  border-radius: 50%;
+  cursor: pointer;
+}
+
+/* 編集ボタンのスタイル */
+.edit_button {
+  position: absolute;
+  bottom: 10px;
+  right: 10px;
+  background-color: #3598db;
+  color: #fff;
+  padding: 5px 10px;
+  border-radius: 5px;
+  cursor: pointer;
+}
+
+.hamburger {
+  width: 30px;
+  height: 20px;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  cursor: pointer;
+}
+
+.line {
+  width: 30px;
+  height: 3px;
+  background-color: #fff; /* ハンバーガーメニューの線の色 */
+  transition: all 0.3s ease; /* アニメーションを追加 */
+}
+
+.hamburger.active .line:nth-child(1) {
+  transform: translateY(8px) rotate(45deg);
+}
+
+.hamburger.active .line:nth-child(2) {
+  opacity: 0;
+}
+
+.hamburger.active .line:nth-child(3) {
+  transform: translateY(-8px) rotate(-45deg);
+}
