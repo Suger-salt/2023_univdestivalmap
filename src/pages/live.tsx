@@ -5,6 +5,7 @@ const Live = () => {
     <>
       <Header />
       <div>ここはライブページです</div>
+      <img src="/images/live1.svg" />
     </>
   );
 };
