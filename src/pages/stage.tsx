@@ -5,6 +5,7 @@ import styles from "@/styles/stage.module.css"; // スタイルシートのイ�
 const Stage = () => {
   const [selectedImage, setSelectedImage] = useState("21sche.svg");
   const [opacity, setOpacity] = useState(0); // 透明度を0から始める
+  const [activeButton, setActiveButton] = useState("button1"); // クリックされているボタンの状態を管理
 
   useEffect(() => {
     // 透明度を徐々に増加させる処理
@@ -23,10 +24,11 @@ const Stage = () => {
     };
   }, [selectedImage]); // selectedImageが変化したときのみ実行
 
-  const handleImageClick = (imageName: string) => {
+  const handleImageClick = (imageName: string, buttonType: string) => {
     // 画像を切り替える
     setSelectedImage(imageName);
     setOpacity(0); // 透明度をリセット
+    setActiveButton(buttonType); // クリックされたボタンの状態を設定
   };
 
   return (
@@ -34,26 +36,40 @@ const Stage = () => {
       <Header />
       <div className={styles.container}>
         <img src="/images/mike.svg" className={styles.leftImage} />
-        <div className={`text ${styles.text}`}>
+        <div className={`text ${styles.title}`}>
           ステージ
           <br />
           スケジュール
         </div>
         <div className={`flex ${styles.imageContainer}`}>
-          <img
-            className=""
-            src="/images/21.svg"
-            onClick={() => handleImageClick("21sche.svg")}
-          />
-          <img
-            src="/images/22.svg"
-            onClick={() => handleImageClick("22sche.svg")}
-          />
+          <div
+            onClick={() => handleImageClick("21sche.svg", "button1")}
+            className={` ${
+              styles.text
+            } border-2 border-black m-[4px] text-center w-[32vw] ${
+              activeButton === "button1" ? "bg-[#FABB91]" : ""
+            }`}
+            style={{ borderRadius: "30px 0 0 30px" }}
+          >
+            21日 (土)
+          </div>
+
+          <div
+            onClick={() => handleImageClick("22sche.svg", "button2")}
+            className={` ${
+              styles.text
+            } border-2 border-black m-[4px] text-center w-[32vw] ${
+              activeButton === "button2" ? "bg-[#FABB91]" : ""
+            }`}
+            style={{ borderRadius: "0 30px 30px 0" }}
+          >
+            22日 (日)
+          </div>
         </div>
 
         {selectedImage && (
           <img
-            className={`${styles.selectedImage}`}
+            className={`${styles.selectedImage} w-[80vw] `}
             src={`/images/${selectedImage}`}
             alt="selected"
             style={{ opacity: opacity }} // 透明度をスタイル属性で設定

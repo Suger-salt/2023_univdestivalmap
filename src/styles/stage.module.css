@@ -12,10 +12,15 @@
   transition: opacity 0s ease; /* 画像の切り替えに1秒かけてフェードアウトとフェードインのアニメーションを追加 */
 }
 
-.text {
+.title {
   font-size: 24px;
   font-weight: bold;
   margin-bottom: 10px;
+}
+
+.text {
+  font-size: 18px;
+  font-weight: bold;
 }
 
 .leftImage {
