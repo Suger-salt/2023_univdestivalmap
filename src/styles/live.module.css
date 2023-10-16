@@ -1,0 +1,25 @@
+/* .text {
+  font-size: 24px;
+  font-weight: bold;
+  margin: 1rem;
+  white-space: nowrap;
+  overflow: hidden;
+  animation: slideText 10s linear infinite;
+} */
+
+.text {
+  font-size: 24px;
+  font-weight: bold;
+  /* white-space: nowrap; */ /* この行はコメントアウトする */
+  animation: slideText 10s linear infinite;
+  margin: 1rem;
+}
+
+/* @keyframes slideText {
+  from {
+    transform: translateX(100%);
+  }
+  to {
+    transform: translateX(-100%);
+  }
+} */
