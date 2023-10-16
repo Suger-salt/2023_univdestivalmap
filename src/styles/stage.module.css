@@ -53,3 +53,15 @@
     opacity: 0;
   }
 }
+
+.timelineItem {
+  transition: opacity 1s ease; /* 0.5秒かけて透明度を変化させるアニメーション */
+}
+
+.timelineDot {
+  transition: background-color 1s ease; /* 0.5秒かけて背景色を変化させるアニメーション */
+}
+
+.timelineContent {
+  transition: font-size 1s ease, font-weight 1s ease; /* 0.5秒かけてフォントサイズと太さを変化させるアニメーション */
+}
