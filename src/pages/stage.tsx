@@ -15,28 +15,28 @@ import { Components } from "@mui/material/styles";
 import { get } from "http";
 import { background } from "@chakra-ui/react";
 
-declare module "@mui/material/styles" {
-  interface Components {
-    MuiTimeline?: {
-      styleOverrides?: {
-        root?: {
-          minHeight?: string;
-          padding?: string;
-          "&:before"?: {
-            display?: string;
-          };
-        };
-      };
-    };
-    MuiTimelineDot?: {
-      styleOverrides?: {
-        root?: {
-          borderColor?: string;
-        };
-      };
-    };
-  }
-}
+// declare module "@mui/material/styles" {
+//   interface Components {
+//     MuiTimeline: {
+//       styleOverrides: {
+//         root: {
+//           minHeight: string;
+//           padding: string;
+//           "&:before": {
+//             display: string;
+//           };
+//         };
+//       };
+//     };
+//     MuiTimelineDot: {
+//       styleOverrides: {
+//         root: {
+//           borderColor: string;
+//         };
+//       };
+//     };
+//   }
+// }
 
 const schedules: ScheduleData = {
   button1: [
