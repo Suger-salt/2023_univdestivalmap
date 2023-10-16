@@ -117,20 +117,15 @@ const Stage = () => {
   const [currentTime, setCurrentTime] = useState(getCurrentTimeInMinutes());
 
   const theme = createTheme({
-    components: {
-      MuiTimelineItem: {
-        styleOverrides: {
-          root: {},
-        },
-      },
-      MuiTimelineDot: {
-        styleOverrides: {
-          root: {
-            borderColor: "#FABB91",
-          },
-        },
-      },
-    },
+    // components: {
+    //   TimelineDot: {
+    //     styleOverrides: {
+    //       root: {
+    //         borderColor: "#FABB91",
+    //       },
+    //     },
+    //   },
+    // },
   });
 
   useEffect(() => {
