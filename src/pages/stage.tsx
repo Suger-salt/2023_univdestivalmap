@@ -88,8 +88,8 @@ const getCurrentTimeInMinutes = () => {
   const currentHour = parseInt(timeArray[0]);
   const currentMinute = parseInt(timeArray[1]);
   console.log(currentHour * 60 + currentMinute);
-  // return currentHour * 60 + currentMinute;
-  return 11 * 60 + 30;
+  return currentHour * 60 + currentMinute;
+  // return 11 * 60 + 30;
 };
 
 const getActiveEventIndex = (currentTime: number, events: Event[]) => {
