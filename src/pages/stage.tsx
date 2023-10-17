@@ -25,9 +25,9 @@ const schedules: ScheduleData = {
     },
     { time: "11:00", event: "手話コーラス ", startTime: 11 * 60 },
     { time: "11:30", event: "休憩", startTime: 11 * 60 + 30 },
-    { time: "01:00", event: "川口春奈 トークショー", startTime: 13 * 60 },
-    { time: "03:30", event: "アカペラサークル", startTime: 15 * 60 + 30 },
-    { time: "04:30", event: "イントロクイズ", startTime: 16 * 60 + 30 },
+    { time: "13:00", event: "川口春奈 トークショー", startTime: 13 * 60 },
+    { time: "15:30", event: "アカペラサークル", startTime: 15 * 60 + 30 },
+    { time: "16:30", event: "イントロクイズ", startTime: 16 * 60 + 30 },
   ],
   button2: [
     {
@@ -38,10 +38,10 @@ const schedules: ScheduleData = {
     { time: "11:00", event: "箱の中身はなんだろな", startTime: 11 * 60 },
     { time: "12:00", event: "休憩", startTime: 12 * 60 },
     { time: "12:30", event: "青年の主張", startTime: 12 * 60 + 30 },
-    { time: "01:30", event: "休憩", startTime: 13 * 60 + 30 },
-    { time: "02:00", event: "お笑い芸人ライブ", startTime: 14 * 60 },
-    { time: "03:00", event: "ダンスサークル", startTime: 15 * 60 },
-    { time: "04:30", event: "後夜祭", startTime: 16 * 60 + 30 },
+    { time: "13:30", event: "休憩", startTime: 13 * 60 + 30 },
+    { time: "14:00", event: "お笑い芸人ライブ", startTime: 14 * 60 },
+    { time: "15:00", event: "ダンスサークル", startTime: 15 * 60 },
+    { time: "16:30", event: "後夜祭", startTime: 16 * 60 + 30 },
   ],
 };
 
@@ -67,8 +67,9 @@ const getCurrentTimeInMinutes = () => {
   // console.log(" current hour" + currentHour);
   const currentMinute = parseInt(timeArray[1]);
   // console.log(" current minutes" + currentMinute);
+  console.log("current time is " + currentHour + ":" + currentMinute);
   return currentHour * 60 + currentMinute;
-  // return 11 * 60 + 30;
+  // return 15 * 60 + 30;
 };
 
 const getActiveEventIndex = (currentTime: number, events: Event[]) => {
@@ -77,35 +78,21 @@ const getActiveEventIndex = (currentTime: number, events: Event[]) => {
     const startTime = event.startTime;
     const endTime =
       i < events.length - 1 ? events[i + 1].startTime : event.startTime + 60; // 次のイベントの開始時刻を取得（なければ現在のイベントの終了時刻+60分）
-
     if (currentTime >= startTime && currentTime < endTime) {
       return i;
     }
   }
-
   return -1;
 };
 
 const Stage = () => {
-  const [selectedImage, setSelectedImage] = useState("21sche.svg");
   const [opacity, setOpacity] = useState(0); // 透明度を0から始める
   const [activeButton, setActiveButton] = useState<"button1" | "button2">(
     "button1"
   );
   // 現在時刻フン
   const [currentTime, setCurrentTime] = useState(getCurrentTimeInMinutes());
-
-  const theme = createTheme({
-    // components: {
-    //   TimelineDot: {
-    //     styleOverrides: {
-    //       root: {
-    //         borderColor: "#FABB91",
-    //       },
-    //     },
-    //   },
-    // },
-  });
+  const theme = createTheme({});
 
   useEffect(() => {
     // 透明度を徐々に増加させる処理
@@ -121,26 +108,24 @@ const Stage = () => {
     }
     return () => {
       clearInterval(interval);
+      setCurrentTime(getCurrentTimeInMinutes());
     };
   }, [activeButton]);
 
-  useEffect(() => {
-    const interval = setInterval(() => {
-      setCurrentTime(getCurrentTimeInMinutes);
-      console.log("currentTime is " + currentTime);
-    }, 1000 * 60);
-    return () => {
-      clearInterval(interval);
-    };
-  }, []);
+  // useEffect(() => {
+  //   const interval = setInterval(() => {
+  //     setCurrentTime(getCurrentTimeInMinutes);
+  //     console.log("currentTime is " + currentTime);
+  //   }, 1000);
+  //   return () => {
+  //     clearInterval(interval);
+  //   };
+  // }, []);
 
-  const handleImageClick = (
-    imageName: string,
-    buttonType: "button1" | "button2"
-  ) => {
-    setSelectedImage(imageName);
+  const handleImageClick = (buttonType: "button1" | "button2") => {
     setOpacity(0);
     setActiveButton(buttonType as "button1" | "button2");
+    console.log("activeButton is " + activeButton);
   };
 
   return (
@@ -159,10 +144,7 @@ const Stage = () => {
               <div
                 key={buttonType}
                 onClick={() =>
-                  handleImageClick(
-                    "21sche.svg",
-                    buttonType as "button1" | "button2"
-                  )
+                  handleImageClick(buttonType as "button1" | "button2")
                 }
                 className={` ${
                   styles.text
