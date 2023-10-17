@@ -60,10 +60,13 @@ interface ScheduleData {
 const getCurrentTimeInMinutes = () => {
   const japanTime = new Date().toLocaleString("en-US", {
     timeZone: "Asia/Tokyo",
+    hour12: false,
   });
   const timeArray = japanTime.split(", ")[1].split(":");
   const currentHour = parseInt(timeArray[0]);
+  // console.log(" current hour" + currentHour);
   const currentMinute = parseInt(timeArray[1]);
+  // console.log(" current minutes" + currentMinute);
   return currentHour * 60 + currentMinute;
   // return 11 * 60 + 30;
 };
@@ -124,6 +127,7 @@ const Stage = () => {
   useEffect(() => {
     const interval = setInterval(() => {
       setCurrentTime(getCurrentTimeInMinutes);
+      console.log("currentTime is " + currentTime);
     }, 1000 * 60);
     return () => {
       clearInterval(interval);
