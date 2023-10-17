@@ -62,14 +62,14 @@ function ShopPage() {
             gridTemplateColumns: "repeat(2, 1fr)",
             overflow: "scroll",
             height: "85vh",
-            padding: "40px",
+            padding: "38px",
           }}
         >
           {data ? (
             data.map((item, index) => (
-              <div key={index} className="p-[4px] m-[4px]">
+              <div key={index} className="text-center">
                 <button
-                  className=" "
+                  className="w-[20vh] h-[20vh]   "
                   onClick={() => {
                     console.log("click");
                     console.log(index);
@@ -78,16 +78,23 @@ function ShopPage() {
                     setItem(item);
                     onOpen();
                   }}
+                  style={{
+                    display: "flex",
+                    flexDirection: "column",
+                    alignItems: "center",
+                    justifyContent: "center",
+                  }}
                 >
                   <div
                     style={{
                       backgroundImage: `url('/images/pop3.svg')`,
                       backgroundRepeat: "no-repeat",
                       backgroundPosition: "center",
-                      backgroundSize: "contain",
+                      backgroundSize: "contain", // または "contain" など、適切な値を指定
                       color: "white",
-                      padding: "18px",
-
+                      width: "200px",
+                      padding: "20px",
+                      marginBottom: "5px",
                       fontSize: "14px",
                       height: "20px",
                       display: "flex",
@@ -101,12 +108,16 @@ function ShopPage() {
                   </div>
                   <img
                     src={item.Shop.shopImage}
-                    style={{ borderRadius: "30px", marginTop: "6px" }}
+                    style={{
+                      borderRadius: "20px",
+                      width: "12vh",
+                      height: "12vh",
+                      boxShadow: "0 8px 16px rgba(0, 0, 0, 0.2)",
+                    }}
                   />
                 </button>
                 {/* ここからモーダルの内容を記述 */}
               </div>
-              //モーダルここまで
             ))
           ) : (
             <div>Loading...</div>
