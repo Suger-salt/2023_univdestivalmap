@@ -167,9 +167,16 @@ function ShopPage() {
               </ModalBody>
 
               <ModalFooter>
-                <Button colorScheme="blue" mr={3} onClick={onClose}>
+                <Button
+                  onClick={onClose}
+                  colorScheme="blue"
+                  style={{ backgroundColor: "#3598DB" }}
+                  boxShadow="lg"
+                >
                   閉じる
                 </Button>
+
+                {/* 他のボタンを追加できます */}
               </ModalFooter>
             </Box>
           </ModalContent>

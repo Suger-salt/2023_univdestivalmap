@@ -15,29 +15,6 @@ import { Components } from "@mui/material/styles";
 import { get } from "http";
 import { background } from "@chakra-ui/react";
 
-// declare module "@mui/material/styles" {
-//   interface Components {
-//     MuiTimeline: {
-//       styleOverrides: {
-//         root: {
-//           minHeight: string;
-//           padding: string;
-//           "&:before": {
-//             display: string;
-//           };
-//         };
-//       };
-//     };
-//     MuiTimelineDot: {
-//       styleOverrides: {
-//         root: {
-//           borderColor: string;
-//         };
-//       };
-//     };
-//   }
-// }
-
 const schedules: ScheduleData = {
   button1: [
     { time: "09:45", event: "開会式", startTime: 9 * 60 + 45 },
@@ -87,7 +64,6 @@ const getCurrentTimeInMinutes = () => {
   const timeArray = japanTime.split(", ")[1].split(":");
   const currentHour = parseInt(timeArray[0]);
   const currentMinute = parseInt(timeArray[1]);
-  console.log(currentHour * 60 + currentMinute);
   return currentHour * 60 + currentMinute;
   // return 11 * 60 + 30;
 };
@@ -148,11 +124,12 @@ const Stage = () => {
   useEffect(() => {
     const interval = setInterval(() => {
       setCurrentTime(getCurrentTimeInMinutes);
-    }, 1000);
+    }, 1000 * 60);
     return () => {
       clearInterval(interval);
     };
   }, []);
+
   const handleImageClick = (
     imageName: string,
     buttonType: "button1" | "button2"
@@ -207,7 +184,7 @@ const Stage = () => {
                   currentTime,
                   schedules[activeButton]
                 );
-                console.log(activeEventIndex);
+                // console.log(activeEventIndex);
 
                 return (
                   <TimelineItem key={index} className={styles.timelineItem}>
