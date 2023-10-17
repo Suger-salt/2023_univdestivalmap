@@ -58,18 +58,27 @@ function ShopPage() {
         <div className={styles2.sideFont2}>F棟側</div>
         <div
           style={{
-            display: "grid",
-            gridTemplateColumns: "repeat(2, 1fr)",
-            overflow: "scroll",
+            // display: "grid",
+            // gridTemplateColumns: "repeat(2, 1fr)",
+            // display: "flex",
+            // overflow: "scroll",
+            // height: "85vh",
+            // marginLeft: "40px",
+            // marginRight: "38px",
+            display: "flex",
+            flexWrap: "wrap",
+            justifyContent: "space-between", // グリッドの間隔を均等に配置
+            overflowY: "scroll",
             height: "85vh",
-            padding: "38px",
+            marginLeft: "40px",
+            marginRight: "40px",
           }}
         >
           {data ? (
             data.map((item, index) => (
               <div key={index} className="text-center">
                 <button
-                  className="w-[20vh] h-[20vh]   "
+                  className="w-[18vh] h-[26vh] text-center"
                   onClick={() => {
                     console.log("click");
                     console.log(index);
@@ -90,13 +99,13 @@ function ShopPage() {
                       backgroundImage: `url('/images/pop3.svg')`,
                       backgroundRepeat: "no-repeat",
                       backgroundPosition: "center",
-                      backgroundSize: "contain", // または "contain" など、適切な値を指定
+                      backgroundSize: "contain",
                       color: "white",
-                      width: "200px",
-                      padding: "20px",
-                      marginBottom: "5px",
+                      padding: "5vw",
+                      height: "40px",
+
                       fontSize: "14px",
-                      height: "20px",
+                      whiteSpace: "nowrap",
                       display: "flex",
                       alignItems: "center",
                       justifyContent: "center",
@@ -116,6 +125,7 @@ function ShopPage() {
                     }}
                   />
                 </button>
+
                 {/* ここからモーダルの内容を記述 */}
               </div>
             ))
@@ -143,6 +153,9 @@ function ShopPage() {
                     src={item.Shop.shopImage}
                     style={{
                       boxShadow: "0 8px 16px rgba(0, 0, 0, 0.2)",
+                      width: "100%",
+                      aspectRatio: "16 / 9",
+                      objectFit: "cover",
                     }}
                   />
                 </div>
