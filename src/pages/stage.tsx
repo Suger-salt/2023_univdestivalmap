@@ -67,7 +67,7 @@ const getCurrentTimeInMinutes = () => {
   // console.log(" current hour" + currentHour);
   const currentMinute = parseInt(timeArray[1]);
   // console.log(" current minutes" + currentMinute);
-  console.log("current time is " + currentHour + ":" + currentMinute);
+  // console.log("current time is " + currentHour + ":" + currentMinute);
   return currentHour * 60 + currentMinute;
   // return 15 * 60 + 30;
 };
@@ -98,7 +98,13 @@ const Stage = () => {
     // 透明度を徐々に増加させる処理
     const increaseOpacity = () => {
       if (opacity < 1) {
-        setOpacity((prevOpacity) => prevOpacity + 0.1); // 0.1ずつ透明度を増加
+        setOpacity((prevOpacity) => {
+          if (prevOpacity < 0.9) {
+            return prevOpacity + 0.1;
+          } else {
+            return 1;
+          }
+        }); // 0.1ずつ透明度を増加
       }
     };
     // インターバルをクリアする関数
@@ -108,19 +114,12 @@ const Stage = () => {
     }
     return () => {
       clearInterval(interval);
-      setCurrentTime(getCurrentTimeInMinutes());
     };
-  }, [activeButton]);
+  });
 
-  // useEffect(() => {
-  //   const interval = setInterval(() => {
-  //     setCurrentTime(getCurrentTimeInMinutes);
-  //     console.log("currentTime is " + currentTime);
-  //   }, 1000);
-  //   return () => {
-  //     clearInterval(interval);
-  //   };
-  // }, []);
+  useEffect(() => {
+    setCurrentTime(getCurrentTimeInMinutes());
+  }, [activeButton]);
 
   const handleImageClick = (buttonType: "button1" | "button2") => {
     setOpacity(0);
