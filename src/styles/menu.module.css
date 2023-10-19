@@ -53,7 +53,8 @@
   font-size: 16px; /* フォントサイズの調整 */
   color: #ff6600;
   margin-top: 5px;
-  text-align: center;
+  text-align: end;
+  margin-right: 10px;
 }
 
 /* ✖アイコンのスタイル */
